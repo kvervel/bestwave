@@ -1,5 +1,6 @@
 Meteor.startup(function () {
-    if (Users.find().count() == 0) {
+  Users.remove({});
+  Messages.remove({});
         [{
             username: "pussyLicker69",
             about: "Here to fuck and suck, and he's all out of fuck",
@@ -12,5 +13,4 @@ Meteor.startup(function () {
 		}].forEach(function (entry) {
             Users.insert(entry);
         });
-    }
 });
