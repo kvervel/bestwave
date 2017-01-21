@@ -29,7 +29,8 @@ Template.messageboard.events({
 		var message = event.target[0].value;
 		Messages.insert({
 			message: message,
-      date: new Date()
+      date: new Date(),
+			username: "You"
 		});
 document.location.reload(true);
 	}
