@@ -24,6 +24,10 @@ h1 {
     text-align: center;
 }
 
+h1:hover {
+    text-shadow: 4px 4px 1px #C91F26, 8px 8px 1px #E25B0E, 11px 11px 1px #F5DD08, 13px 13px 1px #09946E;
+}
+
 .wrap {
     display: flex;
     align-items: center;
