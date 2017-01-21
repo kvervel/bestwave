@@ -10,7 +10,9 @@
 </body>
 
 <template name="layoutMain">
-<a href="/"><h1>BestWave<br>Chatroom</h1></a>
+    <div class="header wrap">
+        <a href="/"><h1> BestWave Chatroom </h1></a>
+    </div>
   {{> yield}}
 </template>
 
@@ -72,7 +74,7 @@
             <p>{{users.objective}}</p>
         </div>
     </div>
-    <div class="buttons wrap">
+    <div class="onebutton wrap">
         <div class="button box">
             <a href="/messageboard">Let's go!</a>
         </div>
@@ -84,13 +86,13 @@
         <div class="chatbox box">
             {{#each messages}}
                 <div class="message">
-                    <h5>{{formatDate date}} {{username}} said:</h5>
+                    <h5>{{formatDate date}}<br>{{username}} said:</h5>
                     <pre>{{message}}</pre>
                 </div>
             {{/each}}
         </div>
     </div>
-    <div class="buttons wrap">
+    <div class="onebutton wrap">
         <div class="writebox box">
             <form method="post">
               <textarea id="message" name="message" required autocomplete="off"></textarea><br>
