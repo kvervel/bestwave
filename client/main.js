@@ -38,9 +38,8 @@ Template.messageboard.events({
 		Messages.insert({
 			message: message,
       date: new Date(),
-			username: "You"
+			username: "you"
 		});
-document.location.reload(true);
 	}
 });
 
@@ -61,5 +60,5 @@ Template.info.helpers({
 });
 
 Template.registerHelper("formatDate", function (date) {
-  return moment(date).format("DD MMM YYYY HH:mm");
+  return moment(date).format("DD MMM HH:mm");
 });

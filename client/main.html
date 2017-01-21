@@ -1,5 +1,5 @@
 <head>
-    <title>BestWave Chatroo</title>
+    <title>BestWave Chatroom</title>
     <link href="styles.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
@@ -50,7 +50,7 @@
         <div class="chatbox box">
             {{#each messages}}
                 <div class="message">
-                    <h5>{{formatDate date}}, {{username}} said:</h5>
+                    <h5>{{formatDate date}} {{username}} said:</h5>
                     <p>{{message}}</p>
                 </div>
             {{/each}}
@@ -58,8 +58,8 @@
     </div>
     <div class="buttons wrap">
         <div class="writebox box">
-            <form>
-              <textarea name="message" style="resize:none; width=50%;" required autocomplete="off" rows="5"></textarea><br>
+            <form method="post">
+              <textarea name="message" required autocomplete="off"></textarea><br>
               <input type="submit" value="Send">
             </form>
         </div>
