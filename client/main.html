@@ -1,0 +1,47 @@
+<head>
+    <title>BestWave Chatroom</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+</body>
+
+<template name="layoutMain">
+  {{> yield}}
+</template>
+
+<template name="home">
+  <h1>BestWave Chatroom</h1>
+
+  <div class="buttons">
+
+      <div class="button">
+          <a href="/messageboard">Chat!</a>
+      </div>
+
+      <div class="button">
+          <a href="#">How to play</a>
+      </div>
+
+      <div class="button">
+          <a href="#">About</a>
+      </div>
+
+  </div>
+</template>
+
+<template name="messageboard">
+  {{#each messages}}
+  <h3>{{message}}</h3>
+  <h5>Posted at {{date}} by you</h5>
+
+  {{/each}}
+
+  <form>
+    <textarea name="message" style="resize:none; width=50%;" required autocomplete="off" rows="5"></textarea><br>
+    <input type="submit" value="Submit">
+  </form>
+</template>
