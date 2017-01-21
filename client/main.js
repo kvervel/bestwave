@@ -46,6 +46,12 @@ Template.messageboard.helpers({
 	}
 });
 
+Template.info.helpers({
+	users: function () {
+		return Users.findOne({});
+	}
+});
+
 Template.registerHelper('formatDate', function(date) {
   return moment(date).format('DD MMM YYYY HH:mm');
 });
