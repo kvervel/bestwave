@@ -43,7 +43,7 @@
     <div class="buttons wrap">
         <div class="writebox box">
             <form method="post">
-              <textarea autocorrect="off" name="accessCode" placeholder="Enter an access Code"></textarea><br>
+              <textarea maxlength="16" autofocus autocorrect="off" name="accessCode" placeholder="Enter an access Code"></textarea><br>
               <input id="joingame" type="submit" value="Join">
             </form>
         </div>
@@ -54,7 +54,7 @@
     <div class="buttons wrap">
         <div class="writebox box">
             <form method=post>
-                <textarea type="text" name="playerName" placeholder="Enter Your Name"></textarea><br>
+                <textarea maxlength="16" autofocus type="text" name="playerName" placeholder="Enter Your Name"></textarea><br>
                 <input id="creategame" type="submit" value="Make">
             </form>
         </div>
@@ -65,15 +65,14 @@
     <div class="main wrap">
         <div class="textbox box">
             <h2>Welcome to BestWave, {{users.username}}!</h2>
-            <h3>About you</h3>
-            <p>{{users.about}}</p>
             <h3>Objective</h3>
-            <p>{{users.objective}}</p>
+            <p>Make your chat mates say {{users.objective}}</p>
+            <p>{{users.challenge}}</p>
         </div>
     </div>
     <div class="onebutton wrap">
         <div class="button box">
-            <a href="/messageboard">Let's go!</a>
+            <p id="newobj">Let's go!</p>
         </div>
     </div>
 </template>
@@ -105,7 +104,7 @@
 <template name="howto">
     <div class="main wrap">
         <div class="textbox box">
-            <h3>Click "Chat!" to be assigned a user. When you enter the chatroom, </h3>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
         </div>
     </div>
 </template>
