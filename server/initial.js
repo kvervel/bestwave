@@ -3,13 +3,18 @@ Meteor.startup(function () {
   Messages.remove({});
         [{
             username: "pussyLicker69",
-            about: "Here to fuck and suck, and he's all out of fuck",
-            objective: "get the bitches"
+            objective: "'notallmen', 'hitler', 'yolo'",
+			challenge: "You may not use the words 'bitch', 'bitches'"
         },
 		{
-			username: "John",
-			about: "Pretty gaaay.",
-			objective: "hack the planet"
+			username: "_*~StarSparkle~*_",
+			objective: "'glitter', 'glowstick', 'so fetch'",
+			challenge: "You may not use UPPERCASE letters"
+		},
+		{
+			username: "John.",
+			objective: "'football', 'the office', 'elbow patches'",
+			challenge: "You cannot smile. ever."
 		}].forEach(function (entry) {
             Users.insert(entry);
         });

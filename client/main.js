@@ -44,6 +44,31 @@ Template.joingame.events({
 		Session.set("name", event.target[0].value);
 		event.preventDefault();
 		Router.go("/info");
+	},
+
+	"keypress form"(event) {
+		if (event.which == 13) {
+			event.preventDefault();
+			$("#joingame").click();
+		}
+	}
+});
+
+Template.info.events({
+	"click #newobj"(event) {
+		console.log("hi");
+		Users.update({username: "pussyLicker69"}, {
+			$set: {objective: "get the money"}
+		});
+	}
+});
+
+Template.newgame.events({
+	"keypress form"(event) {
+		if (event.which == 13) {
+			event.preventDefault();
+			$("#creategame").click();
+		}
 	}
 });
 
@@ -58,10 +83,10 @@ Template.messageboard.onRendered(function () {
 
 Template.messageboard.events({
 	"keypress form"(event) {
-			if (event.which == 13 && !(event.shiftKey)) {
-				event.preventDefault();
-				$("#submit").click();
-			}
+		if (event.which == 13 && !(event.shiftKey)) {
+			event.preventDefault();
+			$("#submit").click();
+		}
 	},
 
 	"submit form"(event) {
