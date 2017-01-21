@@ -14,10 +14,19 @@
   {{> yield}}
 </template>
 
+<template name="startmenu">
+  <div>
+    <button id="btn-new-game">Create Game</button>
+    <button id="btn-join-game">Join Game</button>
+    <button id="btn-start-back">Back</button>
+  </div>
+
+</template>
+
 <template name="home">
     <div class="buttons wrap">
         <div class="button box">
-            <a href="/info">Chat!</a>
+            <a href="/startmenu">Chat!</a>
         </div>
         <div class="button box">
             <a href="/howto">How to play</a>
@@ -26,6 +35,31 @@
             <a href="/about">About</a>
         </div>
     </div>
+</template>
+
+<template name="joingame">
+  <form>
+    <div>
+      <input autocorrect="off" autocapitalize="off" type="text" name="accessCode" placeholder='Enter an access Code'>
+      <input type="text" name="playerName" placeholder='Enter Your Name'>
+      <div class="button-container">
+        <input type="submit" value='Join'>
+        <button id="btn-join-back">Back</button>
+      </div>
+    </div>
+  </form>
+</template>
+
+<template name="newgame">
+  <form>
+    <div class="">
+      <input type="text" name="playerName" placeholder='Enter Your Name'>
+      <div class="button-container">
+        <input type="submit" value='Create Game'>
+        <button id="btn-cre-back">Back</button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <template name="info">
