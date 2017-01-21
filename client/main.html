@@ -11,7 +11,6 @@
 
 <template name="layoutMain">
 <h1>BestWave<br>Chatroom</h1>
-
   {{> yield}}
 </template>
 
@@ -51,7 +50,7 @@
         <div class="chatbox box">
             {{#each messages}}
                 <div class="message">
-                    <h5>{{date}}, {{username}} said:</h5>
+                    <h5>{{formatDate date}}, {{username}} said:</h5>
                     <p>{{message}}</p>
                 </div>
             {{/each}}
