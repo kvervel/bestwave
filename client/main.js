@@ -41,6 +41,7 @@ Router.route("/howto", function () {
 
 Template.joingame.events({
 	"submit form"(event) {
+		Session.set("name", event.target[0].value);
 		event.preventDefault();
 		Router.go("/info");
 	}
@@ -56,11 +57,12 @@ Template.messageboard.events({
 
 	"submit form"(event) {
 		var message = event.target[0].value;
+		var username = Session.get("name");
 		event.preventDefault();
 		Messages.insert({
 			message: message,
       date: new Date(),
-			username: "you"
+			username: username
 		});
 
 		event.target[0].value = "";
