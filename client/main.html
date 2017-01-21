@@ -51,7 +51,7 @@
             {{#each messages}}
                 <div class="message">
                     <h5>{{formatDate date}} {{username}} said:</h5>
-                    <p>{{message}}</p>
+                    <pre>{{message}}</pre>
                 </div>
             {{/each}}
         </div>
@@ -59,8 +59,8 @@
     <div class="buttons wrap">
         <div class="writebox box">
             <form method="post">
-              <textarea name="message" required autocomplete="off"></textarea><br>
-              <input type="submit" value="Send">
+              <textarea id="message" name="message" required autocomplete="off"></textarea><br>
+              <input id="submit" type="submit" value="Send">
             </form>
         </div>
     </div>
