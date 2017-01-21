@@ -1,9 +1,9 @@
 body {
-    background-image: url("bgsquares.gif");
+    background-image: url("/images/bgsquares.gif");
     background-color: lavender;
     height: 100%;
 
-    cursor: url("nat350.png"), progress !important;
+    cursor: url("/images/nat350.png"), progress !important;
 }
 
 h1 {
@@ -35,31 +35,43 @@ h1 {
 .textbox {
     font-size: 24px;
     justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
 }
 
 .chatbox {
         font-size: 24px;
         justify-content: flex-start;
-        max-height: 500px;
+        max-height: 400px;
         overflow-y: scroll;
+        align-items: flex-start;
+        flex-direction: column-reverse;
 }
 
 .box {
     display: flex;
-    flex-direction: column;
-    align-items: center;
 
     width: 80%;
     border: 4px solid darkmagenta;
+    padding: 5px 20px 5px 20px;
     margin-bottom: 20px;
     background-color: snow;
-
-    text-align: center;
 }
 
 .button {
     justify-content: center;
     height: 80px;
+}
+
+.message {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.message p {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 a {
@@ -75,4 +87,9 @@ a:hover {
     color: aqua;
 
     cursor: url(http://cur.cursors-4u.net/nature/nat-4/nat350.png), progress !important;
+}
+
+h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

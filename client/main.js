@@ -24,7 +24,7 @@ Router.route("/messageboard", function () {
 });
 
 Template.messageboard.events({
-	"submit form" (event) {
+	"submit form"(event) {
 		event.preventDefault();
 		var message = event.target[0].value;
 		Messages.insert({
