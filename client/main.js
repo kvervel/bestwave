@@ -15,6 +15,10 @@ Router.route("/", function () {
 	this.render("home");
 });
 
+Router.route("/info", function () {
+	this.render("info");
+});
+
 Router.route("/messageboard", function () {
 	this.render("messageboard");
 });
