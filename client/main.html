@@ -81,6 +81,9 @@
 <template name="messageboard">
     <div class="main wrap">
         <div class="chatbox box">
+            <div class="scorecount box">
+                <h2>score: {{score}}</h2>
+            </div>
             {{#each messages}}
                 <div class="message">
                     <h5>{{formatDate date}}<br>{{username}} said:</h5>
