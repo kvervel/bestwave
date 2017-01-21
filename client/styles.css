@@ -6,6 +6,14 @@ body {
     cursor: url("/images/nat350.png"), progress !important;
 }
 
+:hover {
+    cursor: url("/images/nat350.png"), progress !important;
+}
+
+:active {
+    cursor: url("/images/nat350.png"), progress !important;
+}
+
 h1 {
     font-family: 'Press Start 2P', sans-serif;
     font-size: 10vw;
@@ -61,6 +69,7 @@ h1 {
 
 .button {
     justify-content: center;
+    align-items: center;
     height: 80px;
 }
 
@@ -92,4 +101,44 @@ a:hover {
 h5 {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.writebox textarea {
+    height: 60px;
+    width: 75%;
+    background-color: snow;
+    border: 2px dashed aqua;
+
+    font-size: 24px;
+    font-family: serif;
+}
+
+.writebox textarea:focus {
+    outline: none;
+}
+
+.writebox {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.writebox form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.writebox input {
+    width: 20%;
+    background-color: darkorchid;
+    color: snow;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 3vw;
+}
+
+.writebox input:hover {
+    background-color: aqua;
 }
