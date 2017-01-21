@@ -32,14 +32,24 @@ Router.route("/howto", function () {
 });
 
 Template.messageboard.events({
+
+	"keypress form"(event) {
+			if (event.which == 13 && !(event.shiftKey)) {
+				event.preventDefault();
+				$("#submit").click();
+			}
+	},
+
 	"submit form"(event) {
-		event.preventDefault();
 		var message = event.target[0].value;
+		event.preventDefault();
 		Messages.insert({
 			message: message,
       date: new Date(),
 			username: "you"
 		});
+
+		event.target[0].value = "";
 	}
 });
 
