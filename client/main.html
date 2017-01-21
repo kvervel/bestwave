@@ -10,38 +10,57 @@
 </body>
 
 <template name="layoutMain">
+<h1>BestWave <br> Chatroom</h1>
+
   {{> yield}}
 </template>
 
 <template name="home">
-  <h1>BestWave Chatroom</h1>
+    <div class="buttons wrap">
+        <div class="button box">
+            <a href="/info">Chat!</a>
+        </div>
+        <div class="button box">
+            <a href="#">How to play</a>
+        </div>
+        <div class="button box">
+            <a href="#">About</a>
+        </div>
+    </div>
+</template>
 
-  <div class="buttons">
-
-      <div class="button">
-          <a href="/messageboard">Chat!</a>
-      </div>
-
-      <div class="button">
-          <a href="#">How to play</a>
-      </div>
-
-      <div class="button">
-          <a href="#">About</a>
-      </div>
-
-  </div>
+<template name="info">
+    <div class="main wrap">
+        <div class="textbox box">
+            <h2>Welcome to BestWave, {{username}}!</h2>
+            <h3>About you</h3>
+            <p>{{about}}</p>
+            <h3>Objective</h3>
+            <p>{{objective}}</p>
+        </div>
+    </div>
+    <div class="buttons wrap">
+        <div class="button box">
+            <a href="/messageboard">Let's go!</a>
+        </div>
+    </div>
 </template>
 
 <template name="messageboard">
-  {{#each messages}}
-  <h3>{{message}}</h3>
-  <h5>Posted at {{date}} by you</h5>
-
-  {{/each}}
-
-  <form>
-    <textarea name="message" style="resize:none; width=50%;" required autocomplete="off" rows="5"></textarea><br>
-    <input type="submit" value="Submit">
-  </form>
+    <div class="main wrap">
+        <div class="chatbox box">
+            {{#each messages}}
+                <h3>{{message}}</h3>
+                <h5>Posted at {{date}} by you</h5>
+            {{/each}}
+        </div>
+    </div>
+    <div class="buttons wrap">
+        <div class="button box">
+            <form>
+              <textarea name="message" style="resize:none; width=50%;" required autocomplete="off" rows="5"></textarea><br>
+              <input type="submit" value="Submit">
+            </form>>
+        </div>
+    </div>
 </template>
