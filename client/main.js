@@ -23,6 +23,14 @@ Router.route("/messageboard", function () {
 	this.render("messageboard");
 });
 
+Router.route("/about", function () {
+	this.render("about");
+});
+
+Router.route("/howto", function () {
+	this.render("howto");
+});
+
 Template.messageboard.events({
 	"submit form"(event) {
 		event.preventDefault();
@@ -52,6 +60,6 @@ Template.info.helpers({
 	}
 });
 
-Template.registerHelper('formatDate', function(date) {
-  return moment(date).format('DD MMM YYYY HH:mm');
+Template.registerHelper("formatDate", function (date) {
+  return moment(date).format("DD MMM YYYY HH:mm");
 });
