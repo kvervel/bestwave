@@ -47,6 +47,15 @@ Template.joingame.events({
 	}
 });
 
+Template.messageboard.onRendered(function () {
+	var name = Session.get("name");
+	console.log(name);
+  if(false) {
+		Router.go("/");
+		alert("You didn't say the magic word.");
+	}
+});
+
 Template.messageboard.events({
 	"keypress form"(event) {
 			if (event.which == 13 && !(event.shiftKey)) {
@@ -81,7 +90,13 @@ Template.messageboard.helpers({
 
 Template.info.helpers({
 	users: function () {
-		return Users.findOne({});
+		var array = Users.find().fetch();
+		var randomIndex = Math.floor( Math.random() * array.length );
+		var element = array[randomIndex];
+		Session.set("id", element._id);
+		elementId = Session.get("id");
+		//Session.set("_id");
+		return Users.findOne({_id: elementId});
 	}
 });
 
@@ -90,6 +105,7 @@ Template.registerHelper("formatDate", function (date) {
 });
 
 
+/*******************************************************************
 Template.createGame.events({
   "submit #create-game": function (event) {
     var playerName = event.target.playerName.value;
@@ -112,3 +128,4 @@ Template.createGame.events({
     Router.go("/");
   }
 });
+************************************************************************/

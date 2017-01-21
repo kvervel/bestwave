@@ -64,11 +64,13 @@
 <template name="info">
     <div class="main wrap">
         <div class="textbox box">
-            <h2>Welcome to BestWave, {{users.username}}!</h2>
+          {{#with users}}
+            <h2>Welcome to BestWave, {{username}}!</h2>
             <h3>About you</h3>
-            <p>{{users.about}}</p>
+            <p>{{about}}</p>
             <h3>Objective</h3>
-            <p>{{users.objective}}</p>
+            <p>{{objective}}</p>
+            {{/with}}
         </div>
     </div>
     <div class="onebutton wrap">
