@@ -168,8 +168,9 @@ Template.messageboard.events({
 });
 
 Template.messageboard.onCreated(function () {
-  	let query = Messages.find({});
-	let handle = query.observeChanges({
+		var date = Session.get("time")
+  	let query = Messages.find( { date: { $gt: date } } );
+		let handle = query.observeChanges({
 	    added: function (id, fields) {
 
 			var array = Session.get("array");
@@ -179,7 +180,8 @@ Template.messageboard.onCreated(function () {
 			var word = array[meow];
 			var username = Session.get("username");
 
-			if (newmessage.includes("hi")) {
+			if (newmessage.includes(word)) {
+
 				console.log("yes!!");
 				score += 1;
 				Session.set("score", score);
@@ -192,7 +194,7 @@ Template.messageboard.onCreated(function () {
 				word = array[meow];
 				Session.set("word", word);
 				$("#word").html("word: " + word);
-
+				score=Session.get("score");
 				console.log(word);
 				console.log(score);
 
@@ -255,6 +257,7 @@ Template.info.helpers({
 			Session.set("wordcount", 0);
 			Session.set("meow", 0);
 			Session.set("number", element.number);
+			Session.set("time", new Date());
 
 
 			var array = Session.get("array");
@@ -274,6 +277,8 @@ Template.info.helpers({
 				_id: elementId
 			});
 		} else {
+			Session.set("score", 0);
+			Session.set("time", new Date());
 			return Users.findOne({
 				_id: test
 			});
