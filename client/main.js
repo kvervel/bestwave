@@ -175,12 +175,15 @@ Template.messageboard.onCreated(function () {
 			var score = Session.get("score");
 			var newmessage = fields.message;
 			var word = array[meow];
+			var username = Session.get("username");
 
-			if (newmessage.includes(word)) {
+			if (newmessage.includes("hi")) {
 				console.log("yes!!");
 				score += 1;
 				Session.set("score", score);
 				$("#score").html("score: " + score);
+
+				var adminmessage = username + "'s word was " + word;
 
 				meow += 1;
 				word = array[meow];
@@ -189,6 +192,13 @@ Template.messageboard.onCreated(function () {
 
 				console.log(word);
 				console.log(score);
+
+				SystemMessages.insert({
+					message: adminmessage,
+					date: "",
+					username: "BestWave",
+					checked: false
+				});
 
 			}
 
@@ -199,6 +209,14 @@ Template.messageboard.onCreated(function () {
 Template.messageboard.helpers({
 	messages: function () {
 		return Messages.find({}, {
+			sort: {
+				date: -1
+			}
+		});
+	},
+
+	systemmessages: function () {
+		return SystemMessages.findOne({}, {
 			sort: {
 				date: -1
 			}
