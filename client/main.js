@@ -43,6 +43,10 @@ Router.route("/lose", function () {
 	this.render("lose");
 });
 
+Router.route("/win", function () {
+	this.render("win");
+});
+
 Template.joingame.events({
 	"submit form"(event) {
 		Session.set("name", event.target[0].value);
@@ -198,6 +202,10 @@ Template.messageboard.onCreated(function () {
 					checked: false
 				});
 
+			}
+
+			if (score >= 3) {
+				Router.go("/win");
 			}
 
 	     }
