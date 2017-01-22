@@ -9,6 +9,7 @@ Meteor.startup(function () {
 		inuse: "false",
 		word: "cool",
 		array: {
+			word0: "cool",
 			word1: "notallmen",
 			word2: "hitler",
 			word3: "yolo"
