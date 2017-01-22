@@ -6,6 +6,7 @@ Meteor.startup(function () {
 			number: 0,
             about: "You mad lad",
 			challenge: "You must use the word 'guys' at least once every fourth message",
+            inuse: "false",
 			array: {
 				word1: "notallmen",
 				word2: "hitler",
@@ -17,6 +18,7 @@ Meteor.startup(function () {
 			number: 1,
 			about: "'In my world, everyone's a pony and they all eat rainbows and poop butterflies!'",
 			challenge: "You must end every message with 'xD' or 'haha'",
+      inuse: "false",
 			array: {
 				word1: "glitter",
 				word2: "glowstick",
@@ -28,6 +30,7 @@ Meteor.startup(function () {
 			number: 2,
 			about: "...?",
 			challenge: "You must end every message with a period ('.')",
+      inuse: "false",
 			array: {
 				word1: "football",
 				word2: "the office",
@@ -39,6 +42,7 @@ Meteor.startup(function () {
 				number: 3,
 				about: "Rodents aren't vermin. They're our friends!",
 				challenge: "You must use the words 'mink', 'badger' or 'termitarium' at least once every fourth message",
+        inuse: "false",
 				array: {
 					word1: "badger",
 					word2: "polecat",

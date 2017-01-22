@@ -100,8 +100,9 @@ Template.messageboard.events({
 
 		Messages.insert({
 			message: message,
-      		date: new Date(),
-			username: username
+      date: new Date(),
+			username: username,
+			checked: false
 		});
 
 		event.target[0].value = "";
@@ -180,7 +181,11 @@ Template.messageboard.helpers({
 
 Template.info.helpers({
 	users: function () {
-		var x = Users.find().fetch();
+		var test = Session.get("id");
+		console.log(test);
+		if(Session.get("id")==null) {
+		var x = Users.find({inuse: "false"}).fetch();
+		console.log(x);
 		var randomIndex = Math.floor(Math.random() * x.length);
 		var element = x[randomIndex];
 		Session.set("id", element._id);
@@ -195,12 +200,21 @@ Template.info.helpers({
 		var words = $.map(array, function (value, key) {
 			return value;
 		});
-
 		Session.set("words", words);
-
-		elementId = Session.get("id");
+		elementId = element._id;
+		Users.update(elementId, {
+			$set: {
+				inuse: true
+			}
+		});
 		return Users.findOne({_id: elementId});
 	}
+
+		else {
+			console.log(test);
+			return Users.findOne({_id: test});}
+	}
+
 });
 
 Template.registerHelper("formatDate", function (date) {
