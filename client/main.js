@@ -44,13 +44,13 @@ Router.route("/lose", function () {
 });
 
 Template.joingame.events({
-	"submit form" (event) {
+	"submit form"(event) {
 		Session.set("name", event.target[0].value);
 		event.preventDefault();
 		Router.go("/info");
 	},
 
-	"keypress form" (event) {
+	"keypress form"(event) {
 		if (event.which == 13) {
 			event.preventDefault();
 			$("#joingame").click();
@@ -59,7 +59,7 @@ Template.joingame.events({
 });
 
 Template.newgame.events({
-	"keypress form" (event) {
+	"keypress form"(event) {
 		if (event.which == 13) {
 			event.preventDefault();
 			$("#creategame").click();
@@ -76,24 +76,20 @@ Template.messageboard.onRendered(function () {
 });
 
 Template.messageboard.events({
-	"keypress form" (event) {
+	"keypress form"(event) {
 		if (event.which == 13 && !(event.shiftKey)) {
 			event.preventDefault();
 			$("#submit").click();
 		}
 	},
 
-	"submit form" (event) {
+	"submit form"(event) {
 		var message = event.target[0].value;
 		var username = Session.get("username");
-		var array = Session.get("array");
-		var score = Session.get("score");
 		var word = Session.get("word");
-		var words = Session.get("words");
 		var wordcount = Session.get("wordcount");
 		var number = Session.get("number");
 
-		var wordyes = false;
 		var wordno = false;
 
 		event.preventDefault();
@@ -107,21 +103,10 @@ Template.messageboard.events({
 
 		event.target[0].value = "";
 
-		word = words[word];
 		message = message.toLowerCase();
 		if (message.includes(word)) {
 			wordno = true;
 		};
-
-		if (wordyes) {
-			score += 1;
-			Session.set("score", score);
-			$("#score").html("score: " + score);
-		}
-
-		if (wordno) {
-			Router.go("/lose");
-		}
 
 		if (number == 0) {
 			if (message.includes("guys")) {
@@ -132,19 +117,19 @@ Template.messageboard.events({
 			Session.set("wordcount", wordcount);
 
 			if (wordcount >= 4) {
-				Router.go("/lose");
+				wordno = true;
 			}
 
 		} else if (number == 1) {
 
 			if (!(message.endsWith("xd")) && !(message.endsWith("haha"))) {
 				console.log(message);
-				Router.go("/lose");
+				wordno = true;
 			}
 
 		} else if (number == 2) {
 			if (!(message.endsWith("."))) {
-				Router.go("/lose");
+				wordno = true;
 			}
 
 		} else if (number == 3) {
@@ -156,9 +141,13 @@ Template.messageboard.events({
 			Session.set("wordcount", wordcount);
 
 			if (wordcount >= 4) {
-				Router.go("/lose");
+				wordno = true;
 			}
 
+		}
+
+		if (wordno) {
+			Router.go("/lose");
 		}
 
 	}
@@ -210,15 +199,14 @@ Template.info.helpers({
 			Session.set("username", element.username);
 			Session.set("array", element.array);
 			Session.set("score", 0);
-			Session.set("word", 0);
+			Session.set("word", element.word);
 			Session.set("wordcount", 0);
 			Session.set("number", element.number);
-
 			var array = Session.get("array");
-			var words = $.map(array, function (value, key) {
+			array = $.map(array, function (value, key) {
 				return value;
 			});
-			Session.set("words", words);
+			Session.set("array", array);
 			elementId = element._id;
 			Users.update(elementId, {
 				$set: {
@@ -244,6 +232,27 @@ Template.registerHelper("formatDate", function (date) {
 
 
 /*******************************************************************
+
+var array = Session.get("array");
+var word = Session.get("word");
+var wordcount = Session.get("wordcount");
+var score = Session.get("score");
+var newmessage = foo();
+
+if (newmessage.includes(word)) {
+	score += 1;
+	Session.set("score", score);
+	wordcount += 1;
+	Session.set("wordcount", wordcount);
+	word = array[wordcount];
+	Session.set("word", word);
+}
+
+if (wordyes) {
+	score += 1;
+	Session.set("score", score);
+	$("#score").html("score: " + score);
+}
 
 "click #newobj"(event) {
 	var id = Session.get("id");
