@@ -1,6 +1,7 @@
 Meteor.startup(function () {
 	Users.remove({});
 	Messages.remove({});
+	SystemMessages.remove({});
 	[{
 		username: "pussyLicker69",
 		number: 0,
