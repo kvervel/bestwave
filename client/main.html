@@ -66,15 +66,17 @@
         <div class="textbox box">
              {{#with users}}
             <h2>Welcome to BestWave, {{username}}!</h2>
+            <i>{{about}}</i>
             <h3>Objective</h3>
-            <p>Make your chat mates say {{objective}}</p>
+            <p>Make your chatmates say the current word, and get points! But use the word yourself, and you lose.</p>
+            <h3>Challenge</h3>
             <p>{{challenge}}</p>
             {{/with}}
         </div>
     </div>
     <div class="onebutton wrap">
         <div class="button box">
-            <p id="newobj">Let's go!</p>
+            <a href="/messageboard">Let's go!</a>
         </div>
     </div>
 </template>
@@ -82,8 +84,11 @@
 <template name="messageboard">
     <div class="main wrap">
         <div class="chatbox box">
-            <div class="scorecount box">
+            <div class="infobox box">
                 <h2>score: {{score}}</h2>
+                {{#with users}}
+                    <h2>word: {{array.word1}}</h2>
+                {{/with}}
             </div>
             {{#each messages}}
                 <div class="message">
@@ -106,7 +111,8 @@
 <template name="howto">
     <div class="main wrap">
         <div class="textbox box">
-            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h3>
+            <h3>Welcome to the coolest chatroom ever</h3>
+            <p>When you enter a chat, you will be assigned a user. Your objective is to make your chatmates talk about the things you are interested in. </p>
         </div>
     </div>
 </template>
