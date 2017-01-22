@@ -207,7 +207,7 @@ Template.messageboard.onCreated(function () {
 				console.log(adminmessage);
 			}
 
-			if (score >= 3) {
+			if (score > 3) {
 				Router.go("/win");
 			}
 
