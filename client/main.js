@@ -44,13 +44,13 @@ Router.route("/lose", function () {
 });
 
 Template.joingame.events({
-	"submit form"(event) {
+	"submit form" (event) {
 		Session.set("name", event.target[0].value);
 		event.preventDefault();
 		Router.go("/info");
 	},
 
-	"keypress form"(event) {
+	"keypress form" (event) {
 		if (event.which == 13) {
 			event.preventDefault();
 			$("#joingame").click();
@@ -59,7 +59,7 @@ Template.joingame.events({
 });
 
 Template.newgame.events({
-	"keypress form"(event) {
+	"keypress form" (event) {
 		if (event.which == 13) {
 			event.preventDefault();
 			$("#creategame").click();
@@ -69,21 +69,21 @@ Template.newgame.events({
 
 Template.messageboard.onRendered(function () {
 	var name = Session.get("username");
-	  if (name == null) {
-			Router.go("/");
-			alert("You didn't say the magic word.");
-		}
+	if (name == null) {
+		Router.go("/");
+		alert("You didn't say the magic word.");
+	}
 });
 
 Template.messageboard.events({
-	"keypress form"(event) {
+	"keypress form" (event) {
 		if (event.which == 13 && !(event.shiftKey)) {
 			event.preventDefault();
 			$("#submit").click();
 		}
 	},
 
-	"submit form"(event) {
+	"submit form" (event) {
 		var message = event.target[0].value;
 		var username = Session.get("username");
 		var array = Session.get("array");
@@ -100,7 +100,7 @@ Template.messageboard.events({
 
 		Messages.insert({
 			message: message,
-      date: new Date(),
+			date: new Date(),
 			username: username,
 			checked: false
 		});
@@ -175,7 +175,9 @@ Template.messageboard.helpers({
 
 	users: function () {
 		var id = Session.get("id");
-		return Users.findOne({_id: id});
+		return Users.findOne({
+			_id: id
+		});
 	}
 });
 
@@ -183,42 +185,47 @@ Template.info.helpers({
 	users: function () {
 		var test = Session.get("id");
 		console.log(test);
-		if(Session.get("id")==null) {
-		var x = Users.find({inuse: "false"}).fetch();
-		console.log(x);
-		var randomIndex = Math.floor(Math.random() * x.length);
-		var element = x[randomIndex];
-		Session.set("id", element._id);
-		Session.set("username", element.username);
-		Session.set("array", element.array);
-		Session.set("score", 0);
-		Session.set("word", 0);
-		Session.set("wordcount", 0);
-		Session.set("number", element.number);
+		if (Session.get("id") == null) {
+			var x = Users.find({
+				inuse: "false"
+			}).fetch();
+			console.log(x);
+			var randomIndex = Math.floor(Math.random() * x.length);
+			var element = x[randomIndex];
+			Session.set("id", element._id);
+			Session.set("username", element.username);
+			Session.set("array", element.array);
+			Session.set("score", 0);
+			Session.set("word", 0);
+			Session.set("wordcount", 0);
+			Session.set("number", element.number);
 
-		var array = Session.get("array");
-		var words = $.map(array, function (value, key) {
-			return value;
-		});
-		Session.set("words", words);
-		elementId = element._id;
-		Users.update(elementId, {
-			$set: {
-				inuse: true
-			}
-		});
-		return Users.findOne({_id: elementId});
-	}
-
-		else {
+			var array = Session.get("array");
+			var words = $.map(array, function (value, key) {
+				return value;
+			});
+			Session.set("words", words);
+			elementId = element._id;
+			Users.update(elementId, {
+				$set: {
+					inuse: true
+				}
+			});
+			return Users.findOne({
+				_id: elementId
+			});
+		} else {
 			console.log(test);
-			return Users.findOne({_id: test});}
+			return Users.findOne({
+				_id: test
+			});
+		}
 	}
 
 });
 
 Template.registerHelper("formatDate", function (date) {
-  return moment(date).format("DD MMM HH:mm");
+	return moment(date).format("DD MMM HH:mm");
 });
 
 

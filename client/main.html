@@ -6,131 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
-</body>
-
+<body></body>
 <template name="layoutMain">
-    <div class="header wrap">
-        <a href="/"><h1> BestWave Chatroom </h1></a>
-    </div>
-  {{> yield}}
+   <div class="header wrap">
+      <a href="/">
+         <h1> BestWave Chatroom </h1>
+      </a>
+   </div>
+   {{> yield}}
 </template>
-
 <template name="home">
-    <div class="buttons wrap">
-        <div class="button box">
-            <a href="/joingame">Join Chat</a>
-        </div>
-    </div>
-    <div class="buttons wrap">
-        <div class="button box">
-            <a href="/newgame">Create Chat</a>
-        </div>
-    </div>
-    <div class="buttons wrap">
-        <div class="button box">
-            <a href="/howto">How to Play</a>
-        </div>
-    </div>
-    <div class="buttons wrap">
-        <div class="button box">
-            <a href="/about">About</a>
-        </div>
-    </div>
+   <div class="buttons wrap">
+      <div class="button box">
+         <a href="/joingame">Join Chat</a>
+      </div>
+   </div>
+   <div class="buttons wrap">
+      <div class="button box">
+         <a href="/newgame">Create Chat</a>
+      </div>
+   </div>
+   <div class="buttons wrap">
+      <div class="button box">
+         <a href="/howto">How to Play</a>
+      </div>
+   </div>
+   <div class="buttons wrap">
+      <div class="button box">
+         <a href="/about">About</a>
+      </div>
+   </div>
 </template>
-
 <template name="joingame">
-    <div class="buttons wrap">
-        <div class="writebox box">
-            <form method="post">
-              <textarea maxlength="16" autofocus autocorrect="off" name="accessCode" placeholder="Enter an access Code"></textarea><br>
-              <input id="joingame" type="submit" value="Join">
-            </form>
-        </div>
-    </div>
+   <div class="buttons wrap">
+      <div class="writebox box">
+         <form method="post">
+            <textarea maxlength="16" autofocus autocorrect="off" name="accessCode" placeholder="Enter an access Code"></textarea><br>
+            <input id="joingame" type="submit" value="Join">
+         </form>
+      </div>
+   </div>
 </template>
-
 <template name="newgame">
-    <div class="buttons wrap">
-        <div class="writebox box">
-            <form method=post>
-                <textarea maxlength="16" autofocus type="text" name="playerName" placeholder="Enter Your Name"></textarea><br>
-                <input id="creategame" type="submit" value="Make">
-            </form>
-        </div>
-    </div>
+   <div class="buttons wrap">
+      <div class="writebox box">
+         <form method=post>
+            <textarea maxlength="16" autofocus type="text" name="playerName" placeholder="Enter Your Name"></textarea><br>
+            <input id="creategame" type="submit" value="Make">
+         </form>
+      </div>
+   </div>
 </template>
-
 <template name="info">
-
-    <div class="main wrap">
-        <div class="textbox box">
-          {{#with users}}
-            <h2>Welcome to BestWave, {{username}}!</h2>
-            <i>{{about}}</i>
-            <h3>Objective</h3>
-            <p>Make your chatmates say the current word, and get points! But use the word yourself, and you lose.</p>
-            <h3>Challenge</h3>
-            <p>{{challenge}}</p>
-            {{/with}}
-        </div>
-    </div>
-    <div class="onebutton wrap">
-        <div class="button box">
-            <a href="/messageboard">Let's go!</a>
-        </div>
-    </div>
-
+   <div class="main wrap">
+      <div class="textbox box">
+         {{#with users}}
+         <h2>Welcome to BestWave, {{username}}!</h2>
+         <i>{{about}}</i>
+         <h3>Objective</h3>
+         <p>Make your chatmates say the current word, and get points! But use the word yourself, and you lose.</p>
+         <h3>Challenge</h3>
+         <p>{{challenge}}</p>
+         {{/with}}
+      </div>
+   </div>
+   <div class="onebutton wrap">
+      <div class="button box">
+         <a href="/messageboard">Let's go!</a>
+      </div>
+   </div>
 </template>
-
 <template name="messageboard">
-    <div class="main wrap">
-        <div class="chatbox box">
-            <div class="infobox box">
-                <h2 id="score">score: 0</h2>
-                {{#with users}}
-                    <h2>word: {{array.word1}}</h2>
-                {{/with}}
-            </div>
-            {{#each messages}}
-                <div class="message">
-                    <h5>{{formatDate date}}<br>{{username}} said:</h5>
-                    <pre>{{message}}</pre>
-                </div>
-            {{/each}}
-        </div>
-    </div>
-    <div class="onebutton wrap">
-        <div class="writebox box">
-            <form method="post">
-              <textarea id="message" name="message" required autofocus autocomplete="off"></textarea><br>
-              <input id="submit" type="submit" value="Send">
-            </form>
-        </div>
-    </div>
+   <div class="main wrap">
+      <div class="chatbox box">
+         <div class="infobox box">
+            <h2 id="score">score: 0</h2>
+            {{#with users}}
+            <h2>word: {{array.word1}}</h2>
+            {{/with}}
+         </div>
+         {{#each messages}}
+         <div class="message">
+            <h5>{{formatDate date}}<br>{{username}} said:</h5>
+            <pre>{{message}}</pre>
+         </div>
+         {{/each}}
+      </div>
+   </div>
+   <div class="onebutton wrap">
+      <div class="writebox box">
+         <form method="post">
+            <textarea id="message" name="message" required autofocus autocomplete="off"></textarea><br>
+            <input id="submit" type="submit" value="Send">
+         </form>
+      </div>
+   </div>
 </template>
-
 <template name="howto">
-    <div class="main wrap">
-        <div class="textbox box">
-            <h3>Welcome to the coolest chatroom ever</h3>
-            <p>When you enter a chat, you will be assigned a user. Your objective is to make your chatmates talk about the things you are interested in. </p>
-        </div>
-    </div>
+   <div class="main wrap">
+      <div class="textbox box">
+         <h3>Welcome to the coolest chatroom ever</h3>
+         <p>When you enter a chat, you will be assigned a user. Your objective is to make your chatmates talk about the things you are interested in. </p>
+      </div>
+   </div>
 </template>
-
 <template name="about">
-    <div class="main wrap">
-        <div class="textbox box">
-            <h3>Made by <a href="https://github.com/kvervel">Jo</a> and <a href="https://github.com/littlefxradio">Harley</a> during <a href="http://globalgamejam.org/">Global Game Jam 2017</a>.</h3>
-        </div>
-    </div>
+   <div class="main wrap">
+      <div class="textbox box">
+         <h3>Made by <a href="https://github.com/kvervel">Jo</a> and <a href="https://github.com/littlefxradio">Harley</a> during <a href="http://globalgamejam.org/">Global Game Jam 2017</a>.</h3>
+      </div>
+   </div>
 </template>
-
 <template name="lose">
-    <div class="main wrap">
-        <div class="textbox box">
-            <h3>You lose.</h3>
-        </div>
-    </div>
+   <div class="main wrap">
+      <div class="textbox box">
+         <h3>You lose.</h3>
+      </div>
+   </div>
 </template>
