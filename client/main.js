@@ -43,6 +43,10 @@ Router.route("/lose", function () {
 	this.render("lose");
 });
 
+Router.route("/win", function () {
+	this.render("win");
+});
+
 Template.joingame.events({
 	"submit form"(event) {
 		Session.set("name", event.target[0].value);
@@ -169,9 +173,7 @@ Template.messageboard.onCreated(function () {
 	    added: function (id, fields) {
 
 			var array = Session.get("array");
-			var word = Session.get("word");
 			var meow = Session.get("meow");
-			var wordcount = Session.get("wordcount");
 			var score = Session.get("score");
 			var newmessage = fields.message;
 			var word = array[meow];
@@ -201,6 +203,10 @@ Template.messageboard.onCreated(function () {
 					checked: false
 				});
 				console.log(adminmessage);
+			}
+
+			if (score >= 3) {
+				Router.go("/win");
 			}
 
 	     }
