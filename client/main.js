@@ -95,10 +95,12 @@ Template.messageboard.events({
 	"submit form"(event) {
 		var message = event.target[0].value;
 		var username = Session.get("username");
-		var word = Session.get("word");
 		var wordcount = Session.get("wordcount");
 		var number = Session.get("number");
+		var array = Session.get("array");
+		var meow = Session.get("meow");
 
+		var word = array[meow];
 		var wordno = false;
 
 		event.preventDefault();
@@ -132,7 +134,6 @@ Template.messageboard.events({
 		} else if (number == 1) {
 
 			if (!(message.endsWith("xd")) && !(message.endsWith("haha"))) {
-				console.log(message);
 				wordno = true;
 			}
 
@@ -173,8 +174,7 @@ Template.messageboard.onCreated(function () {
 			var wordcount = Session.get("wordcount");
 			var score = Session.get("score");
 			var newmessage = fields.message;
-
-			console.log(newmessage);
+			var word = array[meow];
 
 			if (newmessage.includes(word)) {
 				console.log("yes!!");
@@ -182,14 +182,11 @@ Template.messageboard.onCreated(function () {
 				Session.set("score", score);
 				$("#score").html("score: " + score);
 
-				word = array[meow];
-
 				meow += 1;
 				word = array[meow];
 				Session.set("word", word);
 				$("#word").html("word: " + word);
 
-				console.log(meow);
 				console.log(word);
 				console.log(score);
 
@@ -219,12 +216,10 @@ Template.messageboard.helpers({
 Template.info.helpers({
 	users: function () {
 		var test = Session.get("id");
-		console.log(test);
 		if (Session.get("id") == null) {
 			var x = Users.find({
 				inuse: "false"
 			}).fetch();
-			console.log(x);
 
 			var randomIndex = Math.floor(Math.random() * x.length);
 			var element = x[randomIndex];
@@ -254,7 +249,6 @@ Template.info.helpers({
 				_id: elementId
 			});
 		} else {
-			console.log(test);
 			return Users.findOne({
 				_id: test
 			});
