@@ -90,6 +90,8 @@ Template.messageboard.events({
 		var score = Session.get("score");
 		var word = Session.get("word");
 		var words = Session.get("words");
+		var wordcount = Session.get("wordcount");
+		var number = Session.get("number");
 
 		var wordyes = false;
 		var wordno = false;
@@ -119,6 +121,44 @@ Template.messageboard.events({
 
 		if (wordno) {
 			Router.go("/lose");
+		}
+
+		if (number == 0) {
+			if (message.includes("guys")) {
+				wordcount = 0;
+			} else {
+				wordcount += 1;
+			}
+			Session.set("wordcount", wordcount);
+
+			if (wordcount >= 4) {
+				Router.go("/lose");
+			}
+
+		} else if (number == 1) {
+
+			if (!(message.endsWith("xd")) && !(message.endsWith("haha"))) {
+				console.log(message);
+				Router.go("/lose");
+			}
+
+		} else if (number == 2) {
+			if (!(message.endsWith("."))) {
+				Router.go("/lose");
+			}
+
+		} else if (number == 3) {
+			if ((message.includes("badger")) || (message.includes("mink")) || (message.includes("termitarium")) || (message.includes("rodent"))) {
+				wordcount = 0;
+			} else {
+				wordcount += 1;
+			}
+			Session.set("wordcount", wordcount);
+
+			if (wordcount >= 4) {
+				Router.go("/lose");
+			}
+
 		}
 
 	}
@@ -153,6 +193,8 @@ Template.info.helpers({
 		Session.set("array", element.array);
 		Session.set("score", 0);
 		Session.set("word", 0);
+		Session.set("wordcount", 0);
+		Session.set("number", element.number);
 
 		var array = Session.get("array");
 		var words = $.map(array, function (value, key) {
