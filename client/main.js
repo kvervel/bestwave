@@ -168,8 +168,8 @@ Template.messageboard.events({
 });
 
 Template.messageboard.onCreated(function () {
-		var date = Session.get("time")
-  	let query = Messages.find( { date: { $gt: date } } );
+		var date = Session.get("time");
+  		let query = Messages.find({date: {$gt: date}});
 		let handle = query.observeChanges({
 	    added: function (id, fields) {
 
@@ -181,22 +181,22 @@ Template.messageboard.onCreated(function () {
 			var username = Session.get("username");
 
 			if (newmessage.includes(word)) {
-
 				console.log("yes!!");
+				var adminmessage = username + "'s word was " + word;
+
 				score += 1;
 				Session.set("score", score);
 				$("#score").html("score: " + score);
-
-				var adminmessage = username + "'s word was " + word;
+				console.log(score);
 
 				meow += 1;
+				Session.set("meow", meow);
 				console.log(meow);
+
 				word = array[meow];
 				Session.set("word", word);
 				$("#word").html("word: " + word);
-				score=Session.get("score");
 				console.log(word);
-				console.log(score);
 
 				SystemMessages.insert({
 					message: adminmessage,
@@ -204,10 +204,10 @@ Template.messageboard.onCreated(function () {
 					username: "BestWave",
 					checked: false
 				});
-				console.log(adminmessage);
 			}
 
 			if (score > 3) {
+				console.log("you win");
 				Router.go("/win");
 			}
 
