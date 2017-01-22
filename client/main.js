@@ -69,6 +69,15 @@ Template.newgame.events({
 
 Template.messageboard.onRendered(function () {
 	var name = Session.get("username");
+	var meow = Session.get("meow");
+	var array = Session.get("array");
+
+	console.log(array);
+	var word = array[meow];
+	console.log(word);
+
+	$("#word").html("word: " + word);
+
 	if (name == null) {
 		Router.go("/");
 		alert("You didn't say the magic word.");
@@ -154,17 +163,40 @@ Template.messageboard.events({
 });
 
 Template.messageboard.onCreated(function () {
-	var x = Session.get("oldmessages");
-  let query = Messages.find({});
-	Session.set("oldmessages", query);
-  let handle = query.observeChanges({
-    addedBefore: function (id, fields,x) {
-      if(Session.get("username") == fields.username) {
-				console.log("hi");
+  	let query = Messages.find({});
+	let handle = query.observeChanges({
+	    added: function (id, fields) {
+
+			var array = Session.get("array");
+			var word = Session.get("word");
+			var meow = Session.get("meow");
+			var wordcount = Session.get("wordcount");
+			var score = Session.get("score");
+			var newmessage = fields.message;
+
+			console.log(newmessage);
+
+			if (newmessage.includes("hi")) {
+				console.log("yes!!");
+				score += 1;
+				Session.set("score", score);
+				$("#score").html("score: " + score);
+
+				word = array[meow];
+
+				meow += 1;
+				word = array[meow];
+				Session.set("word", word);
+				$("#word").html("word: " + word);
+
+				console.log(meow);
+				console.log(word);
+				console.log(score);
+
 			}
-     }
-  });
-	setTimeout(function () {handle.stop();}, 5000);
+
+	     }
+	 });
 });
 
 Template.messageboard.helpers({
@@ -193,20 +225,25 @@ Template.info.helpers({
 				inuse: "false"
 			}).fetch();
 			console.log(x);
+
 			var randomIndex = Math.floor(Math.random() * x.length);
 			var element = x[randomIndex];
 			Session.set("id", element._id);
 			Session.set("username", element.username);
 			Session.set("array", element.array);
 			Session.set("score", 0);
-			Session.set("word", element.word);
 			Session.set("wordcount", 0);
+			Session.set("meow", 0);
 			Session.set("number", element.number);
+
+
 			var array = Session.get("array");
 			array = $.map(array, function (value, key) {
 				return value;
 			});
 			Session.set("array", array);
+
+
 			elementId = element._id;
 			Users.update(elementId, {
 				$set: {
@@ -233,20 +270,7 @@ Template.registerHelper("formatDate", function (date) {
 
 /*******************************************************************
 
-var array = Session.get("array");
-var word = Session.get("word");
-var wordcount = Session.get("wordcount");
-var score = Session.get("score");
-var newmessage = foo();
 
-if (newmessage.includes(word)) {
-	score += 1;
-	Session.set("score", score);
-	wordcount += 1;
-	Session.set("wordcount", wordcount);
-	word = array[wordcount];
-	Session.set("word", word);
-}
 
 if (wordyes) {
 	score += 1;
