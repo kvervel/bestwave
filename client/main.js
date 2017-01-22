@@ -164,6 +164,20 @@ Template.messageboard.events({
 	}
 });
 
+Template.messageboard.onCreated(function () {
+	var x = Session.get("oldmessages");
+  let query = Messages.find({});
+	Session.set("oldmessages", query);
+  let handle = query.observeChanges({
+    addedBefore: function (id, fields,x) {
+      if(Session.get("username") == fields.username) {
+				console.log("hi");
+			}
+     }
+  });
+	setTimeout(function () {handle.stop();}, 5000);
+});
+
 Template.messageboard.helpers({
 	messages: function () {
 		return Messages.find({}, {
