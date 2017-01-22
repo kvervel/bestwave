@@ -85,7 +85,7 @@
     <div class="main wrap">
         <div class="chatbox box">
             <div class="infobox box">
-                <h2>score: {{score}}</h2>
+                <h2 id="score">score: 0</h2>
                 {{#with users}}
                     <h2>word: {{array.word1}}</h2>
                 {{/with}}
@@ -121,6 +121,14 @@
     <div class="main wrap">
         <div class="textbox box">
             <h3>Made by <a href="https://github.com/kvervel">Jo</a> and <a href="https://github.com/littlefxradio">Harley</a> during <a href="http://globalgamejam.org/">Global Game Jam 2017</a>.</h3>
+        </div>
+    </div>
+</template>
+
+<template name="lose">
+    <div class="main wrap">
+        <div class="textbox box">
+            <h3>You lose.</h3>
         </div>
     </div>
 </template>

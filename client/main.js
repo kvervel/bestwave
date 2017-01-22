@@ -39,6 +39,10 @@ Router.route("/howto", function () {
 	this.render("howto");
 });
 
+Router.route("/lose", function () {
+	this.render("lose");
+});
+
 Template.joingame.events({
 	"submit form"(event) {
 		Session.set("name", event.target[0].value);
@@ -64,9 +68,8 @@ Template.newgame.events({
 });
 
 Template.messageboard.onRendered(function () {
-	var name = Session.get("name");
-	console.log(name);
-	  if (false) {
+	var name = Session.get("username");
+	  if (name == null) {
 			Router.go("/");
 			alert("You didn't say the magic word.");
 		}
@@ -82,15 +85,41 @@ Template.messageboard.events({
 
 	"submit form"(event) {
 		var message = event.target[0].value;
-		var username = Session.get("name");
+		var username = Session.get("username");
+		var array = Session.get("array");
+		var score = Session.get("score");
+		var word = Session.get("word");
+		var words = Session.get("words");
+
+		var wordyes = false;
+		var wordno = false;
+
 		event.preventDefault();
+
 		Messages.insert({
 			message: message,
-      date: new Date(),
+      		date: new Date(),
 			username: username
 		});
 
 		event.target[0].value = "";
+
+		word = words[word];
+		message = message.toLowerCase();
+		if (message.includes(word)) {
+			wordno = true;
+		};
+
+		if (wordyes) {
+			score += 1;
+			Session.set("score", score);
+			$("#score").html("score: " + score);
+		}
+
+		if (wordno) {
+			Router.go("/lose");
+		}
+
 	}
 });
 
@@ -105,19 +134,29 @@ Template.messageboard.helpers({
 
 	users: function () {
 		var id = Session.get("id");
-		console.log(id);
 		return Users.findOne({_id: id});
 	}
 });
 
 Template.info.helpers({
 	users: function () {
-		var array = Users.find().fetch();
-		var randomIndex = Math.floor(Math.random() * array.length);
-		var element = array[randomIndex];
+		var x = Users.find().fetch();
+		var randomIndex = Math.floor(Math.random() * x.length);
+		var element = x[randomIndex];
 		Session.set("id", element._id);
+		Session.set("username", element.username);
+		Session.set("array", element.array);
+		Session.set("score", 0);
+		Session.set("word", 0);
+
+		var array = Session.get("array");
+		var words = $.map(array, function (value, key) {
+			return value;
+		});
+
+		Session.set("words", words);
+
 		elementId = Session.get("id");
-		//Session.set("_id");
 		return Users.findOne({_id: elementId});
 	}
 });
