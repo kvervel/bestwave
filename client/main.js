@@ -176,7 +176,7 @@ Template.messageboard.onCreated(function () {
 
 			console.log(newmessage);
 
-			if (newmessage.includes("hi")) {
+			if (newmessage.includes(word)) {
 				console.log("yes!!");
 				score += 1;
 				Session.set("score", score);
