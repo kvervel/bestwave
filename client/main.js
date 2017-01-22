@@ -54,15 +54,6 @@ Template.joingame.events({
 	}
 });
 
-Template.info.events({
-	"click #newobj"(event) {
-		console.log("hi");
-		Users.update({username: "pussyLicker69"}, {
-			$set: {objective: "get the money"}
-		});
-	}
-});
-
 Template.newgame.events({
 	"keypress form"(event) {
 		if (event.which == 13) {
@@ -75,10 +66,10 @@ Template.newgame.events({
 Template.messageboard.onRendered(function () {
 	var name = Session.get("name");
 	console.log(name);
-  if(false) {
-		Router.go("/");
-		alert("You didn't say the magic word.");
-	}
+	  if (false) {
+			Router.go("/");
+			alert("You didn't say the magic word.");
+		}
 });
 
 Template.messageboard.events({
@@ -110,13 +101,19 @@ Template.messageboard.helpers({
 				date: -1
 			}
 		});
+	},
+
+	users: function () {
+		var id = Session.get("id");
+		console.log(id);
+		return Users.findOne({_id: id});
 	}
 });
 
 Template.info.helpers({
 	users: function () {
 		var array = Users.find().fetch();
-		var randomIndex = Math.floor( Math.random() * array.length );
+		var randomIndex = Math.floor(Math.random() * array.length);
 		var element = array[randomIndex];
 		Session.set("id", element._id);
 		elementId = Session.get("id");
@@ -131,6 +128,15 @@ Template.registerHelper("formatDate", function (date) {
 
 
 /*******************************************************************
+
+"click #newobj"(event) {
+	var id = Session.get("id");
+	console.log(id);
+	Users.update({_id: id}, {
+		$set: {objective: "meow"}
+	});
+}
+
 Template.createGame.events({
   "submit #create-game": function (event) {
     var playerName = event.target.playerName.value;
