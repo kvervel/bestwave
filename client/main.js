@@ -169,9 +169,7 @@ Template.messageboard.onCreated(function () {
 	    added: function (id, fields) {
 
 			var array = Session.get("array");
-			var word = Session.get("word");
 			var meow = Session.get("meow");
-			var wordcount = Session.get("wordcount");
 			var score = Session.get("score");
 			var newmessage = fields.message;
 			var word = array[meow];
