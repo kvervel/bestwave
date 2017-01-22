@@ -4,6 +4,7 @@ Meteor.startup(function () {
         [{
             username: "pussyLicker69",
             about: "You mad lad",
+            inuse: "false",
 			challenge: "You may not use the words 'bitch', 'bitches'",
 			array: {
 				word1: "notallmen",
@@ -14,6 +15,7 @@ Meteor.startup(function () {
 		{
 			username: "_*~StarSparkle~*_",
 			about: "'In my world, everyone's a pony and they all eat rainbows and poop butterflies!'",
+      inuse: "false",
 			challenge: "You may not use UPPERCASE letters",
 			array: {
 				word1: "glitter",
@@ -24,6 +26,7 @@ Meteor.startup(function () {
 		{
 			username: "John.",
 			about: "...?",
+      inuse: "false",
 			challenge: "You cannot smile. ever.",
 			array: {
 				word1: "football",
