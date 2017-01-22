@@ -186,6 +186,7 @@ Template.messageboard.onCreated(function () {
 				var adminmessage = username + "'s word was " + word;
 
 				meow += 1;
+				console.log(meow);
 				word = array[meow];
 				Session.set("word", word);
 				$("#word").html("word: " + word);
@@ -195,11 +196,11 @@ Template.messageboard.onCreated(function () {
 
 				SystemMessages.insert({
 					message: adminmessage,
-					date: "",
+					date: new Date(),
 					username: "BestWave",
 					checked: false
 				});
-
+				console.log(adminmessage);
 			}
 
 	     }

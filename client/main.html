@@ -82,9 +82,9 @@
          <div class="infobox box">
             <h2 id="score">score: 0</h2>
             <h2 id="word">word: </h2>
-            {{#each systemmessages}}
+            {{#with systemmessages}}
             <h2>{{message}}</h2>
-            {{/each}}
+            {{/with}}
          </div>
          {{#each messages}}
          <div class="message">
